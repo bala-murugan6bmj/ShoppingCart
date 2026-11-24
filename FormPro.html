@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: #dbeafe;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+    }
+    body > form {
+        width: 850px;
+        max-width: 90%;
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        box-sizing: border-box;
+    }
+    h1 {
+        color: blue;
+        margin-bottom: 30px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="url"],
+    input[type="search"],
+    select,
+    textarea {
+        padding: 10px;
+        border: 1px solid #aaa;
+        border-radius: 6px;
+        font-size: 15px;
+        margin: 5px;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="url"],
+    input[type="search"],
+    select,
+    textarea {
+        width: 300px;
+
+        box-sizing: border-box;
+    }
+    input[type="color"] {
+        width: 60px;
+        height: 40px;
+
+        cursor: pointer;
+    }
+    input[type="file"] {
+        margin: 10px;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin: 8px;
+        cursor: pointer;
+    }
+    button {
+        padding: 12px 22px;
+        margin: 8px;
+        border: none;
+        border-radius: 7px;
+        background-color: #2563eb;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #1d4ed8;
+    }
+    input[type="image"] {
+        display: block;
+        margin: 20px auto;
+        cursor: pointer;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+    }
+</style>
+</head>
+<body>
+    <form>
+        <form action="/submit-form" method="post" target="_self" autocomplete="on" enctype="multipart/form-data">
+            <h1 style="color:blue">Registration-Form</h1>
+            <label for="name">Name : </label>
+            <input type="text" id="name" name="fullname" placeholder="Enter Your Name" value="" minlength="2" maxlength="50" required autocomplete="name"></form>br></br>
+            <label for="password">Password : </label>
+            <input type="password" id="password" name="password" placeholder="Enter Your Password" value="" minlength="8" maxlength="50" required autcomplete="new-password"></br></br>
+            <label for="email">Email : </label> 
+            <input type="email" name="email" placeholder="Ex@gmail.com" value="" required autocomplete="email"></br></br>
+            <label for="age">Age : </label>
+            <input type="number" id="age" placeholder="Enter Your Age" minlength="1" maxlength="100" step="1"></br></br>
+            <label for="phone">Phone Number : </label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter Your Phone number" pattern="[0-9]{10}" maxlength="10" required autocomplete="tel"></br></br>
+            <label for="DOB">Date-Of-Birth : </label>
+            <input type="Date" id="DOB" name="dob" minlength="1980-01-01" maxlength="2026-10-05" required></br></br>
+            <label for="Gender">Gender</label>
+            <input type="radio" id="male" name="Gender" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="Gender" value="female" required>
+            <label for="female">Female</label></br></br>
+            <input type="checkbox" id="html" name="skills" value="html" checked>
+            <label for="html">HTML</label>
+            <input type="checkbox" id="css" name="skills" value="css" checked>
+            <label for="css">CSS</label>
+            <input type="checkbox" id="js" name="skills" value="javascript" checked>
+            <label for="js">javascript</label></br></br>
+            <label for="color">Choose Favorite Color:</label> 
+            <input type="color" id="color" name="color" value="#000000"> </br></br>
+            <label for="resume">Upload File:</label> 
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"> </br></br>
+            <label for="documents"> Upload Multiple Documents: </label> 
+            <input type="file" id="documents" name="documents" accept=".pdf,.doc,.docx" multiple> </br></br>
+            <label for="website">Website:</label> 
+            <input type="url" id="website" name="website" placeholder="https://example.com"></br></br>
+            <label for="search">Search:</label>
+            <input type="search" id="search" name="search" placeholder="Search something..."> </br></br>
+            <label for="disabledField"> Disabled Field: </label>
+            <input type="text" id="disabledField" name="disabledField" value="Cannot edit" disabled> </br></br>
+            <label for="username">Username:</label> 
+            <input type="text" id="username" name="username" autocomplete="username"> </br></br>
+            <label for="message">Message:</label> 
+            <textarea id="message" name="message" rows="5" cols="40" placeholder="Enter your message..." minlength="10" maxlength="500" required></textarea> </br></br>
+            <label for="country">Country :</label>
+            <select id="country" name="country" required>
+            <option value="USA">India</option>
+            <option value="USA">United States of America</option>
+            <option value="Australia">Australia</option>
+            </select></br></br>
+            <label for="course">Choose Course:</label> 
+            <select id="course" name="course"> 
+            <optgroup label="Programming"> 
+            <option value="html"> HTML </option> 
+            <option value="css"> CSS </option> 
+            <option value="javascript"> JavaScript </option> 
+        </optgroup>
+        <optgroup label="Backend"> 
+            <option value="java"> Java </option> 
+            <option value="python"> Python </option> 
+        </optgroup> 
+    </select> </br></br>
+    <button type="button"> Normal Button </button> 
+    <button type="submit"> Submit Form </button> 
+    <button type="reset"> Reset Form </button> </br></br>
+    <input type="image" src="example.jpg" alt="submit">
+    </form>
+</body>
+</html>

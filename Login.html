@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TastyBite - Login & Sign Up</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f8f5f0;
+        }
+
+        .form-switch {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 850px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #fff;
+            border: 1px solid #eadfd3;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 14px 35px rgba(57, 37, 20, 0.14);
+        }
+        .welcome {
+            min-width: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.68)
+                ),
+                url("Login.webp");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .logo {
+            margin-bottom: 30px;
+            color: #fff;
+            font-size: 25px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #ffe0bd;
+        }
+        .logo-icon {
+            color: orange;
+            margin-right: 8px;
+            font-size: 25px;
+        }
+        .welcome h1 {
+            margin-bottom: 12px;
+            font-size: 32px;
+            line-height: 1.3;
+        }
+  .welcome p {
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.8;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 14px 16px;
+    border-left: 4px solid #ff9a3c;
+    border-radius: 8px;
+    margin-top: 8px;
+    backdrop-filter: blur(5px);
+}
+        .food-note {
+            margin-top: 18px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .signup-welcome,
+        .signup-form {
+            display: none;
+        }
+        #signup:checked ~ .auth-card .login-welcome,
+        #signup:checked ~ .auth-card .login-form {
+            display: none;
+        }
+
+        #signup:checked ~ .auth-card .signup-welcome {
+            display: block;
+        }
+
+        #signup:checked ~ .auth-card .signup-form {
+            display: block;
+        }
+        .form-panel {
+            min-width: 0;
+            padding: 28px;
+        }
+        .form-panel h2 {
+            margin-bottom: 8px;
+            color: #222;
+            font-size: 27px;
+        }
+        .subtitle {
+            margin-bottom: 16px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .field {
+            min-width: 0;
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .field span {
+            color:red;
+            font-size:14px;
+            margin-left:2px;
+        }
+        .field input {
+            display: block;
+            width: 100%;
+            min-width: 0;
+            min-height: 42px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            background: #fffdfb;
+            font-size: 14px;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+        .field input:focus {
+            border-color: #ed7624;
+            background: #fff;
+            box-shadow: 0 0 0 3px #ed762422;
+        }
+        .error-message {
+            display: block;
+            margin-top: 5px;
+            color: #dc2626;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .error-message:empty {
+            display: none;
+        }
+        .field input.invalid {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 2px #dc262620;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #555;
+        }
+        .remember input {
+            accent-color: #ed7624;
+        }
+        a {
+            color: #e66b19;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #c94f0a;
+        }
+        .primary-btn,
+        .google-btn {
+            width: 100%;
+            min-height: 42px;
+            padding: 11px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.25s, transform 0.25s;
+        }
+        .primary-btn {
+            border: none;
+            background: #ed7624;
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .primary-btn:hover {
+            background: #cf5d12;
+            transform: translateY(-1px);
+        }
+        .google-btn {
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #333;
+        }
+        .google-btn i {
+            margin-right: 8px;
+        }
+        .google-btn:hover {
+            background: #f7f7f7;
+            border-color: #aaa;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+            color: #888;
+            font-size: 12px;
+        }
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+        .switch-text {
+            margin-top: 14px;
+            color: #666;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .switch-text label {
+            color: #e66b19;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .switch-text label:hover {
+            text-decoration: underline;
+        }
+        .social-login {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .social-login p {
+            margin-bottom: 9px;
+            color: #777;
+            font-size: 12px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+        }
+        .social-icons a {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 50%;
+            background: #fff;
+            transition: 0.25s;
+        }
+        .social-icons img {
+            width: 17px;
+            height: 17px;
+        }
+        .social-icons a:hover {
+            transform: translateY(-2px);
+            background: #fff4e9;
+            border-color: #ed7624;
+        }
+        .signup-form h2 {
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+        .signup-form .subtitle {
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        .signup-form .field {
+            margin-bottom: 8px;
+        }
+        .signup-form .field label {
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+        .signup-form .field input {
+            min-height: 37px;
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+        .signup-form .primary-btn,
+        .signup-form .google-btn {
+            min-height: 38px;
+            padding: 9px;
+            font-size: 13px;
+        }
+        .signup-form .divider {
+            margin: 9px 0;
+        }
+        .signup-form .social-login {
+            margin-top: 9px;
+        }
+        .signup-form .social-icons a {
+            width: 30px;
+            height: 30px;
+        }
+        .signup-form .social-icons img {
+            width: 15px;
+            height: 15px;
+        }
+        .signup-form .switch-text {
+            margin-top: 8px;
+            font-size: 12px;
+        }
+        .form-panel {
+    min-width: 0;
+    padding: 30px;
+    background: linear-gradient(145deg, #fffaf4, #fff4e9);
+    border-left: 1px solid #efd8c4;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.form-panel h2,
+.signup-form h2 {
+    color: #392719;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.field label {
+    color: #493326;
+    font-weight: 800;
+}
+
+.field input {
+    border: 1.5px solid #e3cdbb;
+    border-radius: 9px;
+    background: #fff;
+    color: #38291f;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.field input::placeholder {
+    color: #a18f81;
+    font-weight: 500;
+}
+
+.field input:focus {
+    border-color: #e87525;
+    box-shadow: 0 0 0 3px #ed762422;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #f18a35, #df6419);
+    color: white;
+    font-weight: 700;
+}
+
+.auth-card {
+    border: 2px solid #e8cbb2;
+    box-shadow: 0 18px 45px rgba(91, 52, 22, 0.16);
+}
+
+.welcome p {
+    color: #fff8f1;
+}
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            .auth-card {
+                max-width: 680px;
+                grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            }
+            .welcome {
+                padding: 22px;
+            }
+            .form-panel {
+                padding: 22px;
+            }
+            .logo {
+                margin-bottom: 22px;
+                font-size: 22px;
+            }
+            .logo-icon {
+                font-size: 22px;
+            }
+            .welcome h1 {
+                font-size: 27px;
+            }
+            .welcome p {
+                font-size: 13px;
+            }
+            .form-panel h2 {
+                font-size: 24px;
+            }
+            .field input {
+                min-height: 40px;
+                font-size: 13px;
+            }
+            .signup-form .field input {
+                min-height: 36px;
+            }
+            .signup-form .social-login {
+                display: none;
+            }
+        }
+        @media (max-width: 425px) {
+            body {
+                min-height: 100vh;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .auth-card {
+                width: 100%;
+                max-width: 390px;
+                margin: 0 auto;
+                grid-template-columns: minmax(0, 1fr);
+                border-radius: 14px;
+            }
+            .welcome {
+                min-height: 145px;
+                padding: 17px 20px;
+            }
+            .logo {
+                margin-bottom: 13px;
+                font-size: 21px;
+            }
+            .logo-icon {
+                margin-right: 5px;
+                font-size: 21px;
+            }
+            .welcome h1 {
+                margin-bottom: 6px;
+                font-size: 23px;
+            }
+            .welcome p {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            .food-note {
+                margin-top: 8px;
+                font-size: 12px;
+            }
+            .form-panel {
+                padding: 18px;
+            }
+            .form-panel h2,
+            .signup-form h2 {
+                margin-bottom: 5px;
+                font-size: 22px;
+            }
+            .subtitle,
+            .signup-form .subtitle {
+                margin-bottom: 10px;
+                font-size: 12px;
+                line-height: 1.4;
+            }
+            .field,
+            .signup-form .field {
+                margin-bottom: 8px;
+            }
+            .field label,
+            .signup-form .field label {
+                margin-bottom: 4px;
+                font-size: 12px;
+            }
+            .field input,
+            .signup-form .field input {
+                min-height: 38px;
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+            .error-message {
+                margin-top: 3px;
+                font-size: 11px;
+            }
+            .options {
+                gap: 8px;
+                margin-bottom: 11px;
+                font-size: 11px;
+            }
+            .primary-btn,
+            .google-btn,
+            .signup-form .primary-btn,
+            .signup-form .google-btn {
+                min-height: 39px;
+                padding: 9px;
+                font-size: 13px;
+            }
+            .divider,
+            .signup-form .divider {
+                gap: 9px;
+                margin: 10px 0;
+            }
+            .switch-text,
+            .signup-form .switch-text {
+                margin-top: 10px;
+                font-size: 12px;
+            }
+            .social-login,
+            .signup-form .social-login {
+                display: none;
+            }
+
+            .social-icons {
+                gap: 12px;
+            }
+        }
+        .primary-btn:focus-visible,
+        .google-btn:focus-visible,
+        a:focus-visible,
+        .switch-text label:focus-visible {
+            outline: 3px solid rgba(237, 118, 36, 0.45);
+            outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <input class="form-switch" type="radio"
+        name="form-switch" id="login" checked>
+    <input class="form-switch" type="radio"
+        name="form-switch" id="signup">
+    <main class="auth-card">
+        <section class="welcome">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-utensils logo-icon"></i>
+               <span style="color:orangered">Tasty</span><span style="color:orange">Bite</span>
+            </a>
+            <div class="login-welcome">
+                <h1>Welcome Back!</h1>
+                <p>
+                    Your favorite flavors are waiting.
+                    Login and enjoy delicious meals
+                    with TastyBite.
+                </p>
+                <div class="food-note">
+                    🍕 Fresh Food. Happy Moments.
+                </div>
+            </div>
+            <div class="signup-welcome">
+                <h1>Join Our Family!</h1>
+                <p>
+                    Create your account and discover
+                    delicious food, special offers,
+                    and happy moments.
+                </p>
+                <div class="food-note">
+                    ❤️ Good Food Starts Here.
+                </div>
+            </div>
+        </section>
+        <section class="form-panel">
+            <div class="login-form">
+                <h2>Login</h2>
+                <p class="subtitle">Enter your details to continue.</p>
+                <form id="login-form" action="#" method="post" novalidate>
+                    <div class="field">
+                        <label for="login-email">Email Address <span class="label-style">*</span></label>
+                        <input type="email" id="login-email"
+                            name="loginEmail"
+                            placeholder="you@example.com"
+                            autocomplete="email" required>
+                        <label for="login-password">Password <span class="label-style">*</span></label>
+                        <input type="password" id="login-password"
+                        name="loginPassword" placeholder="Password"
+                        autocomplete="password" required>
+                        <small class="error-message"
+                            id="login-email-error"></small>
+                    </div>
+                  
+                    <div class="options">
+                        <label class="remember">
+                            <input type="checkbox" name="remember">
+                            Remember me
+                        </label>
+                        <a href="#"
+                            onclick="alert('Connect a password-reset feature here.'); return false;">
+                            Forgot password?
+                        </a>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        Login
+                    </button>
+                </form>
+                <div class="divider">or</div>
+                <button type="button" class="google-btn"
+                    onclick="alert('Google sign-in requires authentication setup.')">
+                    <i class="fa-brands fa-google"></i>
+                    Continue with Google
+                </button>
+                <p class="switch-text">
+                    Don't have an account?
+                    <label for="signup" tabindex="0"
+                        onclick="document.getElementById('signup').checked = true;"
+                        onkeydown="if(event.key === 'Enter' || event.key === ' '){event.preventDefault();document.getElementById('signup').checked = true;}">
+                        Sign Up
+                    </label>
+                </p>
+                <div class="social-login">
+                    <p>Follow us</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/"
+                            target="_blank" rel="noopener noreferrer"
+                            aria-label="Facebook">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg"
+                                alt="Facebook">
+                        </a>
+                        <a href="https://www.instagram.com/"
+                            target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg"
+                                alt="Instagram">
+                        </a>
+                        <a href="https://www.youtube.com/"
+                            target="_blank" rel="noopener noreferrer"
+                            aria-label="YouTube">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg"
+                                alt="YouTube">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="signup-form">
+                <h2>Create Account</h2>
+                <p class="subtitle">
+                    Sign up to become part of TastyBite.
+                </p>
+                <form id="signup-form" action="#" method="post" novalidate>
+                    <div class="field">
+                        <label for="full-name">Full Name<span class="label-style">*</span></label>
+                        <input type="text" id="full-name"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            minlength="2" required>
+                        <small class="error-message"
+                            id="full-name-error"></small>
+                    </div>
+                    <div class="field">
+                        <label for="signup-email">Email Address<span>*</span></label>
+                        <input type="email" id="signup-email"
+                            name="signupEmail"
+                            placeholder="you@example.com"
+                            autocomplete="email" required>
+                        <small class="error-message"
+                            id="signup-email-error"></small>
+                    </div>
+                    <div class="field">
+                        <label for="signup-password">Password<span>*</span></label>
+                        <input type="password" id="signup-password"
+                            name="signupPassword"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            minlength="8" required>
+                        <small class="error-message"
+                            id="signup-password-error"></small>
+                    </div>
+                    <div class="field">
+                        <label for="confirm-password">Confirm Password<span>*</span></label>
+                        <input type="password" id="confirm-password"
+                            name="confirmPassword"
+                            placeholder="Confirm your password"
+                            autocomplete="new-password"
+                            minlength="8" required>
+                        <small class="error-message"
+                            id="confirm-password-error"></small>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        Create Account
+                    </button>
+                </form>
+                <div class="divider">or</div>
+                <button type="button" class="google-btn"
+                    onclick="alert('Google sign-in requires authentication setup.')">
+                    <i class="fa-brands fa-google"></i>
+                    Continue with Google
+                </button>
+                <div class="social-login">
+                    <p>Follow us</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/"
+                            target="_blank" rel="noopener noreferrer"
+                            aria-label="Facebook">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg"
+                                alt="Facebook">
+                        </a>
+                        <a href="https://www.instagram.com/"
+                            target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg"
+                                alt="Instagram">
+                        </a>
+                        <a href="https://www.youtube.com/"
+                            target="_blank" rel="noopener noreferrer"
+                            aria-label="YouTube">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg"
+                                alt="YouTube">
+                        </a>
+                    </div>
+                </div>
+                <p class="switch-text">
+                    Already have an account?
+                    <label for="login" tabindex="0"
+                        onclick="document.getElementById('login').checked = true;"
+                        onkeydown="if(event.key === 'Enter' || event.key === ' '){event.preventDefault();document.getElementById('login').checked = true;}">
+                        Login
+                    </label>
+                </p>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.querySelectorAll("form").forEach(function (form) {
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                let isValid = true;
+                const fields = form.querySelectorAll(
+                    "input:not([type='checkbox'])"
+                );
+                fields.forEach(function (input) {
+                    const error = document.getElementById(
+                        input.id + "-error"
+                    );
+                    if (!error) return;
+                    error.textContent = "";
+                    input.classList.remove("invalid");
+                    let message = "";
+                    if (input.value.trim() === "") {
+                        message = "This field is required.";
+                    } else if (
+                        input.type === "email" &&
+                        !input.validity.valid
+                    ) {
+                        message = "Please enter a valid email address.";
+                    } else if (
+                        input.minLength > 0 &&
+                        input.value.length < input.minLength
+                    ) {
+                        message = "Please enter at least " +
+                            input.minLength + " characters.";
+                    }
+                    if (
+                        input.id === "confirm-password" &&
+                        input.value !==
+                        document.getElementById("signup-password").value
+                    ) {
+                        message = "Passwords do not match.";
+                    }
+                    if (message) {
+                        error.textContent = message;
+                        input.classList.add("invalid");
+                        isValid = false;
+                    }
+                });
+                if (isValid) {
+                    alert(
+                        "Validation successful! Connect this form to a backend to complete login or sign-up."
+                    );
+                }
+            });
+            form.querySelectorAll("input").forEach(function (input) {
+                input.addEventListener("input", function () {
+                    input.classList.remove("invalid");
+
+                    const error = document.getElementById(
+                        input.id + "-error"
+                    );
+                    if (error) {
+                        error.textContent = "";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

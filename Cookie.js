@@ -1,0 +1,1 @@
+document.cookie="username=Bala; max-age=600; path=/";

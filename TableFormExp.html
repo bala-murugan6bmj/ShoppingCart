@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 30px;
+            background-image: url("project.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .resume {
+            width: 1000px;
+            max-width: 100%;
+            margin: 10px auto;
+            background-color: white;
+            box-shadow: 0 5px 15px gray;
+        }
+
+        .header {
+            background-color: lightseagreen;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header p {
+            margin: 8px;
+        }
+
+        .content {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .sidebar {
+            width: 30%;
+            padding: 20px;
+            background-color: #176b68;
+            color: white;
+        }
+
+        .sidebar h2 {
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+
+        .sidebar ul {
+            line-height: 2;
+            padding-left: 20px;
+        }
+
+        .sidebar h3 {
+            margin-top: 30px;
+        }
+
+        .main-content {
+            width: 70%;
+            min-width: 0;
+            padding: 25px;
+            background-color: white;
+        }
+
+        .section {
+            margin-top: 25px;
+        }
+
+        .section:first-child {
+            margin-top: 0;
+        }
+
+        .section h2 {
+            color: lightseagreen;
+            border-bottom: 2px solid blue;
+            padding-bottom: 5px;
+        }
+
+        .section p {
+            line-height: 1.6;
+        }
+
+        .skills span {
+            background-color: lightslategray;
+            color: white;
+            padding: 7px 12px;
+            margin: 5px 3px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .project {
+            background-color: #f5fafa;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 4px solid lightslategray;
+        }
+
+        .project h3 {
+            margin-top: 0;
+        }
+
+        .main-content ul {
+            line-height: 1.8;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 10px;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .sidebar,
+            .main-content {
+                width: 100%;
+            }
+
+            .header {
+                padding: 20px 10px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="resume">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>BALA MURUGAN</h1>
+            <p>Full Stack Developer</p>
+            <p>
+                Email: bala@example.com |
+                Phone: +91 98765 43210
+            </p>
+            <p>Madurai, Tamil Nadu</p>
+        </div>
+
+        <!-- Sidebar and Main Content -->
+        <div class="content">
+
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Java</li>
+                    <li>SQL</li>
+                </ul>
+
+                <h3>Personal Details</h3>
+                <p><strong>Location:</strong><br>Madurai, Tamil Nadu</p>
+
+                <h3>Languages</h3>
+                <ul>
+                    <li>Tamil</li>
+                    <li>English</li>
+                </ul>
+
+            </aside>
+
+            <!-- Right Resume Content -->
+            <main class="main-content">
+
+                <!-- Profile -->
+                <div class="section">
+                    <h2>Profile</h2>
+                    <p>
+                        Motivated and passionate web developer with
+                        knowledge of HTML, CSS and JavaScript.
+                        Interested in creating simple, responsive
+                        and user-friendly websites.
+                    </p>
+                </div>
+
+                <!-- Education -->
+                <div class="section">
+                    <h2>Education</h2>
+
+                    <h3>B.Sc. Computer Science</h3>
+                    <p>The American College, Madurai</p>
+                    <p>2022 - 2025</p>
+
+                    <h3>Higher Secondary Education</h3>
+                    <p>Your School Name</p>
+                    <p>Enter your completion year</p>
+                </div>
+
+                <!-- Skills -->
+                <div class="section">
+                    <h2>Technical Skills</h2>
+
+                    <div class="skills">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Java</span>
+                        <span>SQL</span>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="section">
+                    <h2>Projects</h2>
+
+                    <div class="project">
+                        <h3>Student Registration Form</h3>
+                        <p>
+                            Created a student registration form using
+                            HTML and CSS with different input types,
+                            validation and table layout.
+                        </p>
+                    </div>
+
+                    <div class="project">
+                        <h3>Personal Portfolio</h3>
+                        <p>
+                            Created a simple personal portfolio
+                            website using HTML and CSS.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="section">
+                    <h2>Experience</h2>
+
+                    <h3>Junior Web Developer</h3>
+                    <p>ABC Technologies | 2025 - Present</p>
+                    <p>
+                        Worked on web pages using HTML and CSS
+                        and developed simple responsive layouts.
+                    </p>
+                </div>
+
+                <!-- Certifications -->
+                <div class="section">
+                    <h2>Certifications</h2>
+
+                    <ul>
+                        <li>HTML and CSS Certification</li>
+                        <li>JavaScript Fundamentals</li>
+                        <li>Web Development Course</li>
+                    </ul>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

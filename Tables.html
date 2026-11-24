@@ -1,0 +1,242 @@
+<html>
+    <head>
+        <title>Table Form</title>
+        <style>
+ body{
+    background-image: url(project.jpg);
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 10px;
+ }
+table {
+    border-collapse: collapse;
+}
+td, th {
+        border: 1px solid white;
+        padding: 10px;
+        color:black;
+}
+th:hover{
+    background-color:blue;
+    transition: 5s;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    margin-right:10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.container{
+    width:600px;
+    padding:20px;
+    margin:20px 20px;
+    background-color: white;
+    border:2px solid black;
+    box-shadow:10px 10px lightseagreen;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+td:first-child {
+    width: 30%;
+    font-weight: bold;
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: blue;
+    box-shadow: 0 0 5px lightblue;
+}
+
+        </style>
+    </head>
+    <body>
+        <form>
+        <div class="container">
+        <table>
+            <tr>
+            <th colspan="2">Form Table</th>
+            </tr>
+               <tr>
+            <td><label for="name">Name:</label></td>
+            <td>
+                <input type="text"
+                       id="name"
+                       name="fullname"
+                       placeholder="Enter Your Name"
+                       minlength="2"
+                       maxlength="50"
+                       required
+                       autocomplete="name">
+            </td>
+        </tr>
+        <tr>
+            <td><label for="age">Age:</label></td>
+            <td>
+                <input type="number"
+                id="age"
+                name="age"
+                placeholder="Enter Your Age"
+                minlength="1"
+                maxlength="100"
+                required
+                autocomplete="age">
+            </td>
+        </tr>
+        <tr>
+            <td><label for="password">Password:</label></td>
+            <td>
+                <input type="password"
+                id="password"
+                name="password"
+                placeholder="Enter Your Password"
+                minlength="8"
+                maxlength="50"
+                required
+                autocomplete="new-password">
+            </td>
+        </tr>
+        <tr>
+            <td><label for="email">Email:</label></td>
+            <td>
+                <input type="email"
+                id="email"
+                name="password"
+                placeholder="Example@gmail.com"
+                minlength="8"
+                maxlength="40"
+                required
+                autocomplete="new-email">
+            </td>
+        </tr>
+              <tr>
+            <td><label for="phone">Phone Number:</label></td>
+            <td>
+                <input type="tel"
+                       id="phone"
+                       name="phone"
+                       placeholder="Enter Your Phone Number"
+                       pattern="[0-9]{10}"
+                       maxlength="10"
+                       required
+                       autocomplete="tel">
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="DOB">Date Of Birth:</label></td>
+            <td>
+                <input type="date"
+                       id="DOB"
+                       name="dob"
+                       min="1980-01-01"
+                       max="2026-10-05"
+                       required>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Gender:</label></td>
+            <td>
+                <input type="radio"
+                       id="male"
+                       name="gender"
+                       value="male"
+                       required>
+                <label for="male">Male</label>
+
+                <input type="radio"
+                       id="female"
+                       name="gender"
+                       value="female">
+                <label for="female">Female</label>
+            </td>
+        <tr>
+            <td><label>Skills:</label></td>
+            <td>
+                <input type="checkbox"
+                       id="html"
+                       name="skills"
+                       value="html"
+                       checked>
+                <label for="html">HTML</label>
+
+                <input type="checkbox"
+                       id="css"
+                       name="skills"
+                       value="css"
+                       checked>
+                <label for="css">CSS</label>
+
+                <input type="checkbox"
+                       id="js"
+                       name="skills"
+                       value="javascript"
+                       checked>
+                <label for="js">JavaScript</label>
+            </td>
+        </tr>
+                <tr>
+            <td><label for="resume">Upload File:</label></td>
+            <td>
+                <input type="file"
+                       id="resume"
+                       name="resume"
+                       accept=".pdf,.doc,.docx">
+            </td>
+        </tr>
+                <tr>
+            <td><label for="message">Message:</label></td>
+            <td>
+                <textarea id="message"
+                          name="message"
+                          rows="5"
+                          cols="40"
+                          placeholder="Enter your message..."
+                          minlength="10"
+                          maxlength="500"
+                          required></textarea>
+            </td>
+        </tr>
+                <tr>
+            <td><label>Actions:</label></td>
+            <td>
+                <button type="submit">
+                    Submit Form
+                </button>
+
+                <button type="reset">
+                    Reset Form
+                </button>
+            </td>
+        </tr>
+        </table>
+        </div>
+        </form>
+    </body>
+</html>
