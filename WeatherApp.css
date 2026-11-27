@@ -1,0 +1,112 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            padding: 20px;
+        }
+
+        .weather-card {
+            width: 100%;
+            max-width: 460px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .weather-card h1 {
+            text-align: center;
+            color: black;
+            margin-bottom: 50px;
+            margin-right:40px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            padding: 12px;
+            border: 2px solid black;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .search-box input:focus {
+            border-color: lightseagreen;
+        }
+
+        .search-box button {
+            background: lightskyblue;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .search-box button:hover {
+            background: lightseagreen;
+        }
+        #message {
+            text-align: center;
+            color: red;
+            margin-top: 15px;
+            min-height: 20px;
+            font-size: 14px;
+        }
+        .weather-info {
+            text-align: center;
+            margin-top: 25px;
+            display: none;
+        }
+        .weather-info h2 {
+            color: black;
+            font-size: 26px;
+        }
+        .weather-icon {
+            font-size: 80px;
+            margin: 15px 0;
+        }
+        .temperature {
+            font-size: 55px;
+            font-weight: bold;
+            color: lightseagreen;
+        }
+        .description {
+            color: grey;
+            font-size: 18px;
+            margin: 10px 0 25px;
+        }
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .detail-box {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+        }
+        .detail-box p {
+            color: grey;
+            margin-bottom: 8px;
+        }
+        .detail-box h3 {
+            color: black;
+            font-size: 20px;
+        }
+        .loading {
+            color: blueviolet;
+        }
